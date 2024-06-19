@@ -7,7 +7,7 @@ RUN npm run build api
 
 FROM node:16-alpine
 WORKDIR /opt/app
-ADD package.json package-lock.json ./
+ADD package*.json ./
 RUN npm install --only=prod
 COPY --from=build /opt/app/dist/apps/api ./dist/ 
 CMD [ "node", "./dist/main.js" ]
