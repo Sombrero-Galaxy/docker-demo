@@ -20,6 +20,26 @@ services:
       - RABBITMQ_DEFAULT_PASS=admin
     networks:
       - myNetwork
+  app:
+    build:
+      context: .
+      dockerfile: ./apps/app/Dockerfile
+    restart: always
+    networks:
+      - myNetwork
+    container_name: app
+  converter:
+    build:
+      context: .
+      dockerfile: ./apps/converter/Dockerfile
+    restart: always
+    container_name: converter
+    networks:
+      - myNetwork
+    volumes:
+      - ./.env:/opt/app/.env
+    depends_on:
+      - rmq
 networks:
   myNetwork:
     driver: bridge
