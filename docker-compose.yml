@@ -1,0 +1,25 @@
+version: '3'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./apps/api/Dockerfile
+    restart: always
+    networks:
+      - myNetwork
+    volumes:
+      - ./env:/opt/app/.env
+    container_name: api
+    depends_on:
+      - rmq
+  rmq:
+    image: rabbitmq:3-management
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+    networks:
+      - myNetwork
+networks:
+  myNetwork:
+    driver: bridge
