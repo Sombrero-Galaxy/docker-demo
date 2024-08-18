@@ -12,6 +12,8 @@ services:
     container_name: api
     depends_on:
       - rmq
+    ports:
+      - 3002:3000
   rmq:
     image: rabbitmq:3-management
     restart: always
@@ -28,6 +30,8 @@ services:
     networks:
       - myNetwork
     container_name: app
+    ports:
+      - 3002:80
   converter:
     build:
       context: .
