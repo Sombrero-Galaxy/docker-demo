@@ -31,7 +31,7 @@ services:
       - myNetwork
     container_name: app
     ports:
-      - 3002:80
+      - 3001:80
   converter:
     build:
       context: .
