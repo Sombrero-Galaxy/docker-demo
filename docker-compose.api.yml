@@ -11,4 +11,4 @@ services:
     networks:
       - myNetwork
     volumes:
-      - ./env:/opt/app/.env
+      - ./.env:/opt/app/.env
